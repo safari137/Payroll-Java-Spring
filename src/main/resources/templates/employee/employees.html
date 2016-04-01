@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <title>Payroll | Employees</title>
+</head>
+<body>
+<div class="container">
+    <h1>Employees</h1>
+    <a href="/employee/new">Add Employee</a>
+    <div class="row">
+        <div th:each="employee : ${employees}" class="col-md-12">
+            <div class="col-md-3" th:text="${employee.fullName}"></div>
+            <div class="col-md-3" th:text="${employee.email}"></div>
+            <div class="col-md-3" th:text="${employee.phoneNumber}"></div>
+            <div class="col-md-1" th:text="${employee.id}"></div>
+            <div class="col-md-2">
+                <a th:href="@{'/employee/' + ${employee.id}}">Edit</a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
