@@ -10,7 +10,9 @@ public class EmployeeRepository implements Repository<Employee> {
     private static final List<Employee> EMPLOYEES =  new ArrayList<>();
 
     public EmployeeRepository() {
-        EMPLOYEES.add(new Employee(1, "Michael", "Dill"));
+        Employee mike = new Employee(1, "Michael", "Dill");
+        mike.setIsMarried(true);
+        EMPLOYEES.add(mike);
         EMPLOYEES.add(new Employee(2, "David", "Dill"));
     }
 

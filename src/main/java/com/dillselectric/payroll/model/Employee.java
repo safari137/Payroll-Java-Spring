@@ -5,11 +5,23 @@ import java.util.Random;
 
 public class Employee {
     private int id;
+
     private String firstName;
     private String lastName;
+    private String dateOfBirth;
+    private String socialSecurityNumber;
+
     private String phoneNumber;
     private String email;
+    private String address;
+    private String city;
+    private String state;
+    private String zipcode;
+
     private double payRate;
+    private int federalExemptions;
+    private int stateExemptions;
+    private boolean isMarried;
 
     public Employee() {
         Random random = new Random();
@@ -72,5 +84,75 @@ public class Employee {
 
     public void setPayRate(double payRate) {
         this.payRate = payRate;
+    }
+
+    public int getFederalExemptions() {
+        return federalExemptions;
+    }
+
+    public void setFederalExemptions(int federalExemptions) {
+        this.federalExemptions = federalExemptions;
+    }
+
+    public int getStateExemptions() {
+        return stateExemptions;
+    }
+
+    public void setStateExemptions(int stateExemptions) {
+        this.stateExemptions = stateExemptions;
+    }
+
+    public boolean getIsMarried() { return isMarried; }
+
+    public void setIsMarried(boolean married) {
+        isMarried = married;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 }

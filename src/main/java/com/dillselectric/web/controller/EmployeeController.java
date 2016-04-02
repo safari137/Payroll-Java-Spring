@@ -48,12 +48,30 @@ public class EmployeeController {
         return "employee/new";
     }
 
-    @RequestMapping(value = "/employee/{id}")
-    public String employeeEdit(@PathVariable int id, ModelMap modelMap) {
+    @RequestMapping(value = "/employee/{id}/edit")
+    public String employeeEditBasic(@PathVariable int id, ModelMap modelMap) {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
 
-        return "employee/employee_edit";
+        return "employee/employee_edit_main";
+    }
+
+    @RequestMapping("/employee/{id}/edit/contact")
+    public String employeeEditContact(@PathVariable int id, ModelMap modelMap) {
+        Employee employee = employeeRepository.findById(id);
+
+        modelMap.put("employee", employee);
+
+        return "employee/employee_edit_contact";
+    }
+
+    @RequestMapping("/employee/{id}/edit/tax")
+    public String employeeEditTax(@PathVariable int id, ModelMap modelMap) {
+        Employee employee = employeeRepository.findById(id);
+
+        modelMap.put("employee", employee);
+
+        return "employee/employee_edit_tax";
     }
 }
