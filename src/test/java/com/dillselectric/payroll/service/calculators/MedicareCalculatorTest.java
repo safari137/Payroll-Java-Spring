@@ -19,7 +19,7 @@ public class MedicareCalculatorTest {
 
     @Test
     public void medicareCalculatorSetsBothPropertiesOfPaycheck() throws Exception {
-        calculator.calculate(null, 100.00, paycheck);
+        paycheck = calculator.calculate(null, 100.00, paycheck);
 
         assertEquals("medicare withholding", 7.65, paycheck.getMedicareWithholdingTax(), 0);
         assertEquals("employer medicare withholding", 7.65, paycheck.getEmployerMedicareTax(), 0);
@@ -27,14 +27,14 @@ public class MedicareCalculatorTest {
 
     @Test
     public void medicareCalculatorReturnsSameValueForEmployeeAndEmployer() {
-        calculator.calculate(null, 100.00, paycheck);
+        paycheck = calculator.calculate(null, 100.00, paycheck);
 
         assertEquals(paycheck.getEmployerMedicareTax(), paycheck.getMedicareWithholdingTax(), 0);
     }
 
     @Test
     public void medicareCalculatorReturns_0_WhenGrossPayIs_0() throws Exception {
-        calculator.calculate(null, 0, paycheck);
+        paycheck = calculator.calculate(null, 0, paycheck);
 
         assertEquals("medicare withholding", 0, paycheck.getMedicareWithholdingTax(), 0);
         assertEquals("employer medicare withholding", 0, paycheck.getEmployerMedicareTax(), 0);
@@ -42,7 +42,7 @@ public class MedicareCalculatorTest {
 
     @Test
     public void medicareCalculatorRoundsDigitsCorrectly() throws Exception {
-        calculator.calculate(null, 137.00, paycheck);
+        paycheck = calculator.calculate(null, 137.00, paycheck);
 
         assertEquals("medicare withholding", 10.48, paycheck.getMedicareWithholdingTax(), 0);
         assertEquals("employer medicare withholding", 10.48, paycheck.getEmployerMedicareTax(), 0);
