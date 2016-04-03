@@ -15,14 +15,14 @@ public class PayrollEngine {
         this.calculators = calculators;
     }
 
-    public Paycheck ProcessPay(Employee employee, double hours) {
+    public Paycheck processPay(Employee employee, double hours) {
         double grossWage = grossCalculator.Calculate(employee.getPayRate(), hours);
 
         Paycheck paycheck = new Paycheck();
         paycheck.setGrossAmount(grossWage);
 
         for (Calculator calculator : calculators) {
-            paycheck = calculator.Calculate(employee, grossWage, paycheck);
+            paycheck = calculator.calculate(employee, grossWage, paycheck);
         }
 
         return paycheck;

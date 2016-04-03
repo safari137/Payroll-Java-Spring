@@ -11,7 +11,7 @@ public class MedicareCalculator implements Calculator {
     private static final double MEDICARE_RATE = 0.0765;
 
     @Override
-    public Paycheck Calculate(Employee employee, double grossPay, Paycheck paycheck) {
+    public Paycheck calculate(Employee employee, double grossPay, Paycheck paycheck) {
         double medicareWithholding = grossPay * MEDICARE_RATE;
 
         medicareWithholding = new BigDecimal(medicareWithholding).setScale(2, RoundingMode.HALF_EVEN).doubleValue();

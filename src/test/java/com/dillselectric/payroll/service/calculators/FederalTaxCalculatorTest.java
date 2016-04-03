@@ -24,7 +24,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 9145, paycheck);
+        paycheck = calculator.calculate(employee, 9145, paycheck);
 
         assertEquals(2511.46, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -34,7 +34,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 8120, paycheck);
+        paycheck = calculator.calculate(employee, 8120, paycheck);
 
         assertEquals(2152.66, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -44,7 +44,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 4620, paycheck);
+        paycheck = calculator.calculate(employee, 4620, paycheck);
 
         assertEquals(997.52, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -54,7 +54,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 3090, paycheck);
+        paycheck = calculator.calculate(employee, 3090, paycheck);
 
         assertEquals(568.87, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -64,7 +64,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 1620, paycheck);
+        paycheck = calculator.calculate(employee, 1620, paycheck);
 
         assertEquals(201.25, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -74,7 +74,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 530, paycheck);
+        paycheck = calculator.calculate(employee, 530, paycheck);
 
         assertEquals(37.05, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -84,7 +84,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 170, paycheck);
+        paycheck = calculator.calculate(employee, 170, paycheck);
 
         assertEquals(0.60, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -94,7 +94,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(true);
 
-        paycheck = calculator.Calculate(employee, 150, paycheck);
+        paycheck = calculator.calculate(employee, 150, paycheck);
 
         assertEquals(0, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -104,7 +104,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 8030, paycheck);
+        paycheck = calculator.calculate(employee, 8030, paycheck);
 
         assertEquals(2319.91, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -114,7 +114,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 8000, paycheck);
+        paycheck = calculator.calculate(employee, 8000, paycheck);
 
         assertEquals(2309.18, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -124,7 +124,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 3710, paycheck);
+        paycheck = calculator.calculate(employee, 3710, paycheck);
 
         assertEquals(893.32, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -134,7 +134,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 1810, paycheck);
+        paycheck = calculator.calculate(employee, 1810, paycheck);
 
         assertEquals(360.82, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -144,7 +144,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 780, paycheck);
+        paycheck = calculator.calculate(employee, 780, paycheck);
 
         assertEquals(102.90, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -154,7 +154,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 230, paycheck);
+        paycheck = calculator.calculate(employee, 230, paycheck);
 
         assertEquals(19.1, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -164,7 +164,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 60, paycheck);
+        paycheck = calculator.calculate(employee, 60, paycheck);
 
         assertEquals(1.7, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -174,7 +174,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 43, paycheck);
+        paycheck = calculator.calculate(employee, 43, paycheck);
 
         assertEquals(0, paycheck.getFederalWithholdingTax(), 0);
     }
@@ -184,7 +184,7 @@ public class FederalTaxCalculatorTest {
         employee.setFederalExemptions(0);
         employee.setIsMarried(false);
 
-        paycheck = calculator.Calculate(employee, 40, paycheck);
+        paycheck = calculator.calculate(employee, 40, paycheck);
 
         assertEquals(0, paycheck.getFederalWithholdingTax(), 0);
     }

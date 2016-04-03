@@ -11,19 +11,19 @@ public class FederalTaxCalculator implements Calculator {
     private static final double EXEMPTION_VALUE = 77.90;
 
     @Override
-    public Paycheck Calculate(Employee employee, double grossPay, Paycheck paycheck) {
+    public Paycheck calculate(Employee employee, double grossPay, Paycheck paycheck) {
         double adjustedGrossPay = grossPay - (employee.getFederalExemptions() * EXEMPTION_VALUE);
 
         double federalWithholdingTax = (employee.getIsMarried()) ?
-                CalculateMarried(adjustedGrossPay) :
-                CalculateSingle(adjustedGrossPay);
+                calculateMarried(adjustedGrossPay) :
+                calculateSingle(adjustedGrossPay);
 
         paycheck.setFederalWithholdingTax(federalWithholdingTax);
 
         return paycheck;
     }
 
-    private double CalculateMarried(double adjustedGross) {
+    private double calculateMarried(double adjustedGross) {
         double  fedTaxRate,
                 federalWithholding,
                 excessPay;
@@ -77,7 +77,7 @@ public class FederalTaxCalculator implements Calculator {
         return getFinalCalculation(federalWithholding, excessPay, fedTaxRate);
     }
 
-    private double CalculateSingle(double adjustedGross) {
+    private double calculateSingle(double adjustedGross) {
         double  fedTaxRate,
                 federalWithholding,
                 excessPay;
