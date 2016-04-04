@@ -12,12 +12,12 @@ public class SocialSecurityCalculator implements Calculator {
 
     @Override
     public Paycheck calculate(Employee employee, double grossPay, Paycheck paycheck) {
-        double socialSecurityWithholing = grossPay * SOCIAL_SECURITY_RATE;
+        double socialSecurityWithholding = grossPay * SOCIAL_SECURITY_RATE;
 
-        socialSecurityWithholing = new BigDecimal(socialSecurityWithholing).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
+        socialSecurityWithholding = new BigDecimal(socialSecurityWithholding).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 
-        paycheck.setSocialSecurityWithholdingTax(socialSecurityWithholing);
-        paycheck.setEmployerSocialSecurityTax(socialSecurityWithholing);
+        paycheck.setSocialSecurityWithholdingTax(socialSecurityWithholding);
+        paycheck.setEmployerSocialSecurityTax(socialSecurityWithholding);
 
         return paycheck;
     }
