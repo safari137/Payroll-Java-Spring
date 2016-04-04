@@ -21,8 +21,8 @@ public class MedicareCalculatorTest {
     public void medicareCalculatorSetsBothPropertiesOfPaycheck() throws Exception {
         paycheck = calculator.calculate(null, 100.00, paycheck);
 
-        assertEquals("medicare withholding", 7.65, paycheck.getMedicareWithholdingTax(), 0);
-        assertEquals("employer medicare withholding", 7.65, paycheck.getEmployerMedicareTax(), 0);
+        assertEquals("medicare withholding", 1.45, paycheck.getMedicareWithholdingTax(), 0);
+        assertEquals("employer medicare withholding", 1.45, paycheck.getEmployerMedicareTax(), 0);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MedicareCalculatorTest {
     public void medicareCalculatorRoundsDigitsCorrectly() throws Exception {
         paycheck = calculator.calculate(null, 137.00, paycheck);
 
-        assertEquals("medicare withholding", 10.48, paycheck.getMedicareWithholdingTax(), 0);
-        assertEquals("employer medicare withholding", 10.48, paycheck.getEmployerMedicareTax(), 0);
+        assertEquals("medicare withholding", 1.99, paycheck.getMedicareWithholdingTax(), 0);
+        assertEquals("employer medicare withholding", 1.99, paycheck.getEmployerMedicareTax(), 0);
     }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MedicareCalculator implements Calculator {
-    private static final double MEDICARE_RATE = 0.0765;
+    private static final double MEDICARE_RATE = 0.0145;
 
     @Override
     public Paycheck calculate(Employee employee, double grossPay, Paycheck paycheck) {
