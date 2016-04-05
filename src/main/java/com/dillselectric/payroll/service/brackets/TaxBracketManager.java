@@ -16,19 +16,18 @@ public class TaxBracketManager {
 
     public TaxInfo getTaxInfo(double adjustedGross) {
         for (TaxInfo taxInfo : taxInfoList) {
-            if (adjustedGross > taxInfo.getMinimumGross() && adjustedGross <= taxInfo.getMaximumGross()) {
+            boolean meetsMinimumRequirement = (adjustedGross > taxInfo.getMinimumGross());
+            boolean meetsMaximumRequirement = (adjustedGross <= taxInfo.getMaximumGross() || taxInfo.getMaximumGross() == 0);
+
+            if (meetsMinimumRequirement && meetsMaximumRequirement) {
                 taxInfo.setExcess(this.calculateExcess(adjustedGross, taxInfo.getMinimumGross()));
                 return taxInfo;
             }
         }
-
         return null;
     }
 
     private double calculateExcess(double gross, double baseAmount) {
-        if (baseAmount == 0)
-            return 0;
-
         double excess = new BigDecimal(gross - baseAmount).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 
         return excess;
