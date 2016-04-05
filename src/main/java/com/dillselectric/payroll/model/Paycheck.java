@@ -16,6 +16,7 @@ public class Paycheck {
     private double employerSocialSecurityTax;
     private double employerFederalUnemploymentTax;
     private double employerStateUnemploymentTax;
+    private int employeeId;
     private Employee employee;
 
     public Paycheck() {
@@ -109,6 +110,14 @@ public class Paycheck {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public Employee getEmployee() {
