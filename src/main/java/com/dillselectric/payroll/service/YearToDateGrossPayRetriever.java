@@ -4,6 +4,7 @@ import com.dillselectric.contracts.DataRetriever;
 import com.dillselectric.contracts.Repository;
 import com.dillselectric.payroll.model.Paycheck;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,11 +25,12 @@ public class YearToDateGrossPayRetriever implements DataRetriever {
     }
 
     private List<Paycheck> getDataFromRepository(int id) {
+
         List<Paycheck> paychecks = repository
                 .getAll()
                 .stream()
                 .filter(p -> p.getEmployeeId() == id)
-                .filter(p -> p.getDate().YEAR == currentYear)
+                .filter(p -> p.getDate().get(Calendar.YEAR) == currentYear)
                 .collect(Collectors.toList());
 
         return paychecks;
