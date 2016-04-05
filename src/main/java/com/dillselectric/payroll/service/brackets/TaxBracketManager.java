@@ -7,10 +7,10 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaxBracket {
+public class TaxBracketManager {
     private List<TaxInfo> taxInfoList = new ArrayList<>();
 
-    public TaxBracket(List<TaxInfo> taxInfoList) {
+    public TaxBracketManager(List<TaxInfo> taxInfoList) {
         this.taxInfoList = taxInfoList;
     }
 
