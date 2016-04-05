@@ -8,13 +8,13 @@ import com.dillselectric.payroll.model.Paycheck;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class FederalUnemploymentCalculator implements Calculator {
-    private static final double MAX_TAX_LIABILITY = 7000;
-    private static final double FEDERAL_UNEMPLOYMENT_TAX_RATE = 0.006;
+public class StateUnemploymentCalculator implements Calculator {
+    private static final double STATE_UNEMPLOYMENT_RATE = 0.0292;
+    private static final double MAX_TAX_LIABILITY = 8000;
 
     private DataRetriever dataRetriever;
 
-    public FederalUnemploymentCalculator(DataRetriever dataRetriever) {
+    public StateUnemploymentCalculator(DataRetriever dataRetriever) {
         this.dataRetriever = dataRetriever;
     }
 
@@ -24,19 +24,19 @@ public class FederalUnemploymentCalculator implements Calculator {
 
         boolean hasPaidMaxGross = (grossYearToDatePay >= MAX_TAX_LIABILITY);
         if (hasPaidMaxGross) {
-            paycheck.setEmployerFederalUnemploymentTax(0);
+            paycheck.setEmployerStateUnemploymentTax(0);
             return paycheck;
         }
 
         double amountToPayTaxesOn = MAX_TAX_LIABILITY - grossYearToDatePay;
 
         double taxDue = (amountToPayTaxesOn >= grossPay) ?
-                grossPay * FEDERAL_UNEMPLOYMENT_TAX_RATE :
-                amountToPayTaxesOn * FEDERAL_UNEMPLOYMENT_TAX_RATE;
+                grossPay * STATE_UNEMPLOYMENT_RATE :
+                amountToPayTaxesOn * STATE_UNEMPLOYMENT_RATE;
 
         taxDue = new BigDecimal(taxDue).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 
-        paycheck.setEmployerFederalUnemploymentTax(taxDue);
+        paycheck.setEmployerStateUnemploymentTax(taxDue);
 
         return paycheck;
     }
