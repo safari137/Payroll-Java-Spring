@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center"><h1>Payrun Details</h1></div>
+        <div th:each="paycheck : ${paychecks}">
+            <div class="row">
+                <div class="col-md-4"><strong th:text="${paycheck.employeeId}"></strong></div>
+                <div class="col-md-4" th:text="${'Gross Pay: ' + paycheck.grossAmount}"></div>
+                <div class="col-md-4" th:text="${'Net Pay: ' + paycheck.netAmount}"></div>
+            </div>
+            <div class="row">
+                <h5><strong>Employee Taxes</strong></h5>
+                <div class="col-md-3" th:text="${'Federal Tax: -' + paycheck.federalWithholdingTax}"></div>
+                <div class="col-md-3" th:text="${'State Tax: -' + paycheck.stateWithholdingTax}"></div>
+                <div class="col-md-3" th:text="${'Medicare Tax: -' + paycheck.medicareWithholdingTax}"></div>
+                <div class="col-md-3" th:text="${'SS Tax: -' + paycheck.socialSecurityWithholdingTax}"></div>
+            </div>
+            <br/>
+            <div class="row">
+                <h5><strong>Employer Taxes</strong></h5>
+                <div class="col-md-3" th:text="${'SS Tax: -' + paycheck.employerSocialSecurityTax}"></div>
+                <div class="col-md-3" th:text="${'Medicare Tax: -' + paycheck.employerMedicareTax}"></div>
+                <div class="col-md-3" th:text="${'Fed Unemployement: -' + paycheck.employerFederalUnemploymentTax}"></div>
+                <div class="col-md-3" th:text="${'State Unemployment: -' + paycheck.employerStateUnemploymentTax}"></div>
+            </div>
+            <br/>
+            <br/>
+            <hr/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</body>
+</html>

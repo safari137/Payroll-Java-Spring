@@ -1,20 +1,27 @@
 package com.dillselectric.web.controller;
 
+import com.dillselectric.payroll.model.Employee;
+import com.dillselectric.payroll.model.Paycheck;
+import com.dillselectric.payroll.service.engine.PayrollEngineDriver;
 import com.dillselectric.repository.EmployeeRepository;
+import com.dillselectric.repository.PaycheckRepository;
 import com.dillselectric.web.view_model.EmployeePayrun;
 import com.dillselectric.web.view_model.PayRunContainer;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PayrollController {
     private EmployeeRepository employeeRepository;
+    private PayrollEngineDriver payrollEngineDriver = new PayrollEngineDriver(new PaycheckRepository());
 
     public PayrollController() {
         this.employeeRepository = new EmployeeRepository();
@@ -37,11 +44,28 @@ public class PayrollController {
     }
 
     @RequestMapping(value = "/payroll", method = RequestMethod.POST)
-    public ModelAndView runPayroll(@ModelAttribute PayRunContainer payRunContainer) {
-        for (EmployeePayrun employee : payRunContainer.getEmployeePayruns()) {
-            System.out.println(employee.toString());
-        }
+    public String runPayroll(@ModelAttribute PayRunContainer payRunContainer, ModelMap modelMap) {
+        List<Employee> employees = this.convertViewModelToEmployees(payRunContainer);
 
-        return new ModelAndView("redirect:/payroll");
+        List<Paycheck> paychecks = payrollEngineDriver.executePayroll(employees);
+
+        modelMap.put("paychecks", paychecks);
+
+        return "payroll/payrun_details";
+    }
+
+    private List<Employee> convertViewModelToEmployees(PayRunContainer payRunContainer) {
+        List<Employee> employees = new ArrayList<>();
+
+        for (EmployeePayrun payrun : payRunContainer.getEmployeePayruns()) {
+            if (!payrun.getShouldPay())
+                continue;
+
+            Employee employee = employeeRepository.findById(payrun.getEmployeeId());
+            employee.setCurrentHours(payrun.getHours());
+
+            employees.add(employee);
+        }
+        return employees;
     }
 }

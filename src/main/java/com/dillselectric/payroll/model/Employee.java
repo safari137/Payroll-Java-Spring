@@ -23,6 +23,8 @@ public class Employee {
     private int stateExemptions;
     private boolean isMarried;
 
+    private double currentHours;
+
     public Employee() {
         Random random = new Random();
         this.id = random.nextInt(1000) + 1;
@@ -154,5 +156,13 @@ public class Employee {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public double getCurrentHours() {
+        return currentHours;
+    }
+
+    public void setCurrentHours(double currentHours) {
+        this.currentHours = currentHours;
     }
 }

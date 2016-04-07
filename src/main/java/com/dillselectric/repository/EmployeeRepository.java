@@ -12,8 +12,13 @@ public class EmployeeRepository implements Repository<Employee> {
     public EmployeeRepository() {
         Employee mike = new Employee(1, "Michael", "Dill");
         mike.setIsMarried(true);
+        mike.setPayRate(15.00);
         EMPLOYEES.add(mike);
-        EMPLOYEES.add(new Employee(2, "David", "Dill"));
+
+        Employee david = new Employee(2, "David", "Dill");
+        david.setPayRate(10.00);
+        EMPLOYEES.add(david);
+
     }
 
     @Override

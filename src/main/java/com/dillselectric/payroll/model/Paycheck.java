@@ -98,7 +98,7 @@ public class Paycheck {
         this.grossAmount = grossAmount;
     }
     public double getNetAmount() {
-        return netAmount;
+        return grossAmount - federalWithholdingTax - stateWithholdingTax - medicareWithholdingTax - socialSecurityWithholdingTax;
     }
 
     public void setNetAmount(double netAmount) {
