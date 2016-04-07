@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository implements Repository<Employee> {
-    private static final List<Employee> EMPLOYEES =  new ArrayList<>();
+    private final List<Employee> EMPLOYEES =  new ArrayList<>();
 
     public EmployeeRepository() {
         Employee mike = new Employee(1, "Michael", "Dill");

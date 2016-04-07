@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <title>Payroll | New Payrun</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="text-center"><h1>New Payrun</h1></div>
+    <form action="#" th:action="@{/payroll}" th:method="post" th:object="${payRunContainer}">
+        <div th:each="employeePayRun,status : *{employeePayruns}">
+            <div class="row">
+                <input type="hidden" th:field="*{employeePayruns[__${status.index}__].employeeId}"/>
+
+                <div class="col-md-1">
+                    <input type="checkbox" th:field="*{employeePayruns[__${status.index}__].shouldPay}" />
+                </div>
+
+                <div class="col-md-2" th:text="${employeePayRun.fullName}"></div>
+
+                <div class="col-md-1">
+                    <input type="text" th:field="*{employeePayruns[__${status.index}__].hours}" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center"><button class="btn btn-primary btn-lg" type="submit">Run Payroll</button></div>
+    </form>
+</div>
+</body>
+</html>
