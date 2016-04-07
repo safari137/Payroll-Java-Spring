@@ -21,10 +21,12 @@ import java.util.List;
 @Controller
 public class PayrollController {
     private EmployeeRepository employeeRepository;
+    private PaycheckRepository paycheckRepository;
     private PayrollEngineDriver payrollEngineDriver = new PayrollEngineDriver(new PaycheckRepository());
 
     public PayrollController() {
         this.employeeRepository = new EmployeeRepository();
+        this.paycheckRepository = new PaycheckRepository();
     }
 
     @RequestMapping("/payroll")
@@ -67,5 +69,14 @@ public class PayrollController {
             employees.add(employee);
         }
         return employees;
+    }
+
+    @RequestMapping("/payroll/paychecks")
+    public String viewPaychecks(ModelMap modelMap) {
+        List<Paycheck> paychecks = paycheckRepository.getAll();
+
+        modelMap.put("paychecks", paychecks);
+
+        return "payroll/payrun_details";
     }
 }

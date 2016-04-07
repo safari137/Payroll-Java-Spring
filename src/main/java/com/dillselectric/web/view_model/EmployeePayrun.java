@@ -12,7 +12,6 @@ public class EmployeePayrun {
     private double hours;
 
     public EmployeePayrun() {
-        System.out.println("constructor called");
     }
 
     public EmployeePayrun(int id, String fullName) {

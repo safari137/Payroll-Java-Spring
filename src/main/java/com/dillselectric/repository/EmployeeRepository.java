@@ -7,18 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository implements Repository<Employee> {
-    private final List<Employee> EMPLOYEES =  new ArrayList<>();
+    private static final List<Employee> EMPLOYEES =  new ArrayList<>();
 
     public EmployeeRepository() {
-        Employee mike = new Employee(1, "Michael", "Dill");
-        mike.setIsMarried(true);
-        mike.setPayRate(15.00);
-        EMPLOYEES.add(mike);
 
-        Employee david = new Employee(2, "David", "Dill");
-        david.setPayRate(10.00);
-        EMPLOYEES.add(david);
+        if (EMPLOYEES.size() < 1) {
+            Employee mike = new Employee(1, "Michael", "Dill");
+            mike.setIsMarried(true);
+            mike.setPayRate(15.00);
+            EMPLOYEES.add(mike);
 
+            Employee david = new Employee(2, "David", "Dill");
+            david.setPayRate(10.00);
+            EMPLOYEES.add(david);
+        }
     }
 
     @Override

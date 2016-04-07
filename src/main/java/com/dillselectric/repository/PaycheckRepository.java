@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaycheckRepository implements Repository<Paycheck> {
-    private final List<Paycheck> PAYCHECKS =  new ArrayList<>();
+    private static final List<Paycheck> PAYCHECKS =  new ArrayList<>();
 
     public PaycheckRepository() {
     }
