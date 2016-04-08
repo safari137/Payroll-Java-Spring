@@ -53,11 +53,6 @@ public class EmployeeRepository implements Repository<Employee> {
     }
 
     @Override
-    public void save() {
-        // Not Needed At This Time
-    }
-
-    @Override
     public void delete(int id) {
         for (int i = 0; i<EMPLOYEES.size(); i++) {
             if (EMPLOYEES.get(i).getId() == id) {

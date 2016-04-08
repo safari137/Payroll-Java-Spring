@@ -17,6 +17,7 @@ build.gradle
 argfile*
 pom.xml
 activemq-data/
+data/
 
 /build
 buildSrc/build

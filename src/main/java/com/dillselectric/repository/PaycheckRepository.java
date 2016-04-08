@@ -43,11 +43,6 @@ public class PaycheckRepository implements Repository<Paycheck> {
     }
 
     @Override
-    public void save() {
-        // Not Needed At This Time
-    }
-
-    @Override
     public void delete(int id) {
         for (int i = 0; i< PAYCHECKS.size(); i++) {
             if (PAYCHECKS.get(i).getId() == id) {

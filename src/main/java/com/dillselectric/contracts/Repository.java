@@ -7,6 +7,5 @@ public interface Repository <T> {
     void insert(T item);
     void update(T item);
     T findById(int id);
-    void save();
     void delete(int id);
 }

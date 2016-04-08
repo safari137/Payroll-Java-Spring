@@ -99,11 +99,6 @@ public class YearToDateGrossPayRetrieverTest {
         }
 
         @Override
-        public void save() {
-
-        }
-
-        @Override
         public void delete(int id) {
 
         }
