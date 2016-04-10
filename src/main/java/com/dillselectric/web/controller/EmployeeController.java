@@ -1,6 +1,7 @@
 package com.dillselectric.web.controller;
 
 import com.dillselectric.contracts.Repository;
+import com.dillselectric.data.PayrollDao;
 import com.dillselectric.payroll.model.Employee;
 import com.dillselectric.repository.EmployeeRepository;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Controller
 public class EmployeeController {
-    private Repository<Employee> employeeRepository = new EmployeeRepository();
+    private Repository<Employee> employeeRepository = new PayrollDao<>(Employee.class);
 
     @RequestMapping(value = "/employee", method = RequestMethod.GET)
     public String allEmployees(ModelMap modelMap) {
@@ -73,5 +74,14 @@ public class EmployeeController {
         modelMap.put("employee", employee);
 
         return "employee/employee_edit_tax";
+    }
+
+    @RequestMapping("/employee/{id}/details")
+    public String employeeDetails(@PathVariable int id, ModelMap modelMap) {
+        Employee employee = employeeRepository.findById(id);
+
+        modelMap.put("employee", employee);
+
+        return "/employee/employee_details";
     }
 }

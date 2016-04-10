@@ -1,5 +1,7 @@
 package com.dillselectric.web.controller;
 
+import com.dillselectric.contracts.Repository;
+import com.dillselectric.data.PayrollDao;
 import com.dillselectric.payroll.model.Employee;
 import com.dillselectric.payroll.model.Paycheck;
 import com.dillselectric.payroll.service.engine.PayrollEngineDriver;
@@ -8,6 +10,7 @@ import com.dillselectric.repository.PaycheckRepository;
 import com.dillselectric.web.view_model.EmployeePayrun;
 import com.dillselectric.web.view_model.PayRunContainer;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,13 +23,11 @@ import java.util.List;
 
 @Controller
 public class PayrollController {
-    private EmployeeRepository employeeRepository;
-    private PaycheckRepository paycheckRepository;
-    private PayrollEngineDriver payrollEngineDriver = new PayrollEngineDriver(new PaycheckRepository());
+    private Repository<Employee> employeeRepository = new PayrollDao<>(Employee.class);
+    private Repository<Paycheck> paycheckRepository = new PayrollDao<>(Paycheck.class);
+    private PayrollEngineDriver payrollEngineDriver = new PayrollEngineDriver(new PayrollDao<Paycheck>(Paycheck.class));
 
     public PayrollController() {
-        this.employeeRepository = new EmployeeRepository();
-        this.paycheckRepository = new PaycheckRepository();
     }
 
     @RequestMapping("/payroll")

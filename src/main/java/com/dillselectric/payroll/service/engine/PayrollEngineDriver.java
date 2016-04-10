@@ -2,6 +2,7 @@ package com.dillselectric.payroll.service.engine;
 
 import com.dillselectric.contracts.Calculator;
 import com.dillselectric.contracts.Repository;
+import com.dillselectric.data.PayrollDao;
 import com.dillselectric.payroll.model.Employee;
 import com.dillselectric.payroll.model.Paycheck;
 import com.dillselectric.payroll.model.TaxInfo;
@@ -19,6 +20,7 @@ public class PayrollEngineDriver {
     private List<Calculator> calculatorList;
     private PayrollEngine engine;
     private Repository<Paycheck> paycheckRepository;
+    private Repository<Employee> employeeRepository = new PayrollDao<>(Employee.class);
 
     private Calendar today = Calendar.getInstance();
 
@@ -33,11 +35,14 @@ public class PayrollEngineDriver {
         for(Employee employee : employees) {
             Paycheck paycheck = engine.processPay(employee, employee.getCurrentHours());
             paycheck.setEmployeeId(employee.getId());
+            paycheck.setEmployee(employee);
             paycheck.setDate(today);
             paychecks.add(paycheck);
             employee.setCurrentHours(0);
 
-            paycheckRepository.insert(paycheck);
+            employee.getPaychecks().add(paycheck);
+
+            employeeRepository.update(employee);
         }
 
         return paychecks;

@@ -1,29 +1,53 @@
 package com.dillselectric.payroll.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+@Entity
 public class Paycheck {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column
     private Calendar date;
+    @Column
     private double grossAmount;
+    @Column
     private double netAmount;
+    @Column
     private double federalWithholdingTax;
+    @Column
     private double stateWithholdingTax;
+    @Column
     private double medicareWithholdingTax;
+    @Column
     private double socialSecurityWithholdingTax;
+    @Column
     private double employerMedicareTax;
+    @Column
     private double employerSocialSecurityTax;
+    @Column
     private double employerFederalUnemploymentTax;
+    @Column
     private double employerStateUnemploymentTax;
+    @Column
     private int employeeId;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Employee employee;
 
     public Paycheck() {
-        Random random = new Random();
+    }
 
-        this.id = random.nextInt(1000) + 1;
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public double getFederalWithholdingTax() {
@@ -119,14 +143,6 @@ public class Paycheck {
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Calendar getDate() {

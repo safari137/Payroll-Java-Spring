@@ -10,7 +10,7 @@
         <div class="text-center"><h1>Payrun Details</h1></div>
         <div th:each="paycheck : ${paychecks}">
             <div class="row">
-                <div class="col-md-4"><strong th:text="${paycheck.employeeId}"></strong></div>
+                <div class="col-md-4"><strong th:text="${paycheck.employee.fullName} + ' - ' + ${paycheck.id}"></strong></div>
                 <div class="col-md-4" th:text="${'Gross Pay: ' + paycheck.grossAmount}"></div>
                 <div class="col-md-4" th:text="${'Net Pay: ' + paycheck.netAmount}"></div>
             </div>

@@ -20,27 +20,43 @@ public class PayrollDao<T> implements Repository<T> {
     public List<T> getAll() {
         Session currentSession = sessionFactory.getCurrentSession();
 
+        currentSession.beginTransaction();
         Criteria criteria = currentSession.createCriteria(type);
+        List<T> itemList = criteria.list();
+        currentSession.getTransaction().commit();
 
-        return criteria.list();
+        return itemList;
     }
 
     @Override
     public T findById(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        return currentSession.get(type, id);
+        currentSession.beginTransaction();
+        T item = currentSession.get(type, id);
+        currentSession.getTransaction().commit();
+
+        return item;
     }
 
     @Override
     public void insert(T item) {
         Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.saveOrUpdate(item);
+
+        currentSession.beginTransaction();
+
+        currentSession.save(item);
+        currentSession.flush();
+        currentSession.getTransaction().commit();
     }
 
     @Override
     public void update(T item) {
-        sessionFactory.getCurrentSession().saveOrUpdate(item);
+        Session session = sessionFactory.getCurrentSession();
+
+        session.beginTransaction();
+        session.saveOrUpdate(item);
+        session.getTransaction().commit();
     }
 
     @Override

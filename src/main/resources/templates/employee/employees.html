@@ -16,7 +16,8 @@
             <div class="col-md-3" th:text="${employee.phoneNumber}"></div>
             <div class="col-md-1" th:text="${employee.id}"></div>
             <div class="col-md-2">
-                <a th:href="@{'/employee/' + ${employee.id} + '/edit/'}">Edit</a>
+                <a th:href="@{'/employee/' + ${employee.id} + '/edit/'}">Edit |</a>
+                <a th:href="@{'/employee/' + ${employee.id} + '/details/'}"> Details |</a>
             </div>
             <br/>
         </div>

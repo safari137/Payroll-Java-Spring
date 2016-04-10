@@ -16,6 +16,8 @@
         <!-- Show the queries prepared by Hibernate -->
         <property name="show_sql">true</property>
 
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+
         <!-- Names of annotated entity classes -->
         <mapping class="com.dillselectric.payroll.model.Employee" />
         <mapping class="com.dillselectric.payroll.model.Paycheck" />

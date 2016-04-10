@@ -11,6 +11,9 @@ public class PayrollSessionFactory {
     }
 
     public static org.hibernate.SessionFactory buildSessionFactory() {
+        if (sessionFactory != null)
+            return sessionFactory;
+
         final ServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 
         return new MetadataSources(registry).buildMetadata().buildSessionFactory();
