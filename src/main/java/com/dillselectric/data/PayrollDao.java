@@ -40,14 +40,16 @@ public class PayrollDao<T> implements Repository<T> {
     }
 
     @Override
-    public void insert(T item) {
+    public int insert(T item) {
         Session currentSession = sessionFactory.getCurrentSession();
 
         currentSession.beginTransaction();
 
-        currentSession.save(item);
+        int id = (int) currentSession.save(item);
         currentSession.flush();
         currentSession.getTransaction().commit();
+
+        return id;
     }
 
     @Override
@@ -63,6 +65,10 @@ public class PayrollDao<T> implements Repository<T> {
     public void delete(int id) {
         T item = this.findById(id);
 
-        sessionFactory.getCurrentSession().delete(item);
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        session.delete(item);
+        session.getTransaction().commit();
     }
 }

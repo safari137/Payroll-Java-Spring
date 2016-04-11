@@ -1,6 +1,7 @@
 package com.dillselectric.repository;
 
 import com.dillselectric.contracts.Repository;
+import com.dillselectric.data.PayrollDao;
 import com.dillselectric.payroll.model.Employee;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,17 @@ public class EmployeeRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        repository = new EmployeeRepository();
+        repository = new PayrollDao<>(Employee.class);
+
+        Employee employee1 = new Employee();
+        employee1.setFirstName("Mike");
+
+        repository.insert(employee1);
+
+        Employee employee2 = new Employee();
+        employee2.setFirstName("Daisy");
+
+        repository.insert(employee2);
     }
 
     @Test
@@ -28,13 +39,18 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void updateChangesWork() throws Exception {
-        Employee employee = new Employee(1, "Doby", "Dole");
+        Employee employee = repository.getAll().get(0);
+        int id = employee.getId();
+
+        employee.setFirstName("Doby");
+        employee.setLastName("Dole");
         employee.setEmail("mike@mike.com");
         employee.setPhoneNumber("434-509-2986");
         employee.setPayRate(13.00);
 
         repository.update(employee);
-        Employee updatedEmployee = repository.findById(1);
+
+        Employee updatedEmployee = repository.findById(id);
 
         assertEquals("first name", "Doby", updatedEmployee.getFirstName());
         assertEquals("last name", "Dole", updatedEmployee.getLastName());
@@ -45,14 +61,14 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void insertAddsNewEmployee() throws Exception {
-        Employee employee = new Employee(3, "Doby", "Dill");
+        Employee employee = new Employee(0, "Doby", "Dill");
 
-        repository.insert(employee);
-        Employee insertedEmployee = repository.findById(3);
+        int id = repository.insert(employee);
+        Employee insertedEmployee = repository.findById(id);
 
         assertEquals("firstName", "Doby", insertedEmployee.getFirstName());
         assertEquals("lastName", "Dill", insertedEmployee.getLastName());
-        assertEquals("id", 3, insertedEmployee.getId());
+        assertEquals("id", id, insertedEmployee.getId());
     }
 
     @Test

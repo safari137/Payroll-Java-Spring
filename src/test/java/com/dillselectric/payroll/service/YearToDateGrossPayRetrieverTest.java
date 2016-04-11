@@ -4,7 +4,6 @@ import com.dillselectric.contracts.Repository;
 import com.dillselectric.payroll.model.Paycheck;
 import org.junit.Before;
 import org.junit.Test;
-import sun.util.calendar.CalendarDate;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -84,8 +83,8 @@ public class YearToDateGrossPayRetrieverTest {
         }
 
         @Override
-        public void insert(Paycheck item) {
-
+        public int insert(Paycheck item) {
+            return 0;
         }
 
         @Override

@@ -29,8 +29,10 @@ public class EmployeeRepository implements Repository<Employee> {
     }
 
     @Override
-    public void insert(Employee item) {
+    public int insert(Employee item) {
         EMPLOYEES.add(item);
+
+        return item.getId();
     }
 
     @Override

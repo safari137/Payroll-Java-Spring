@@ -19,8 +19,10 @@ public class PaycheckRepository implements Repository<Paycheck> {
     }
 
     @Override
-    public void insert(Paycheck item) {
+    public int insert(Paycheck item) {
         PAYCHECKS.add(item);
+
+        return item.getId();
     }
 
     @Override

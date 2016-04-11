@@ -6,6 +6,7 @@
 </head>
 
 <body>
+<div th:replace="partials/header :: header"></div>
 <div class="container">
     <div class="text-center"><h1>New Payrun</h1></div>
     <form action="#" th:action="@{/payroll}" th:method="post" th:object="${payRunContainer}">

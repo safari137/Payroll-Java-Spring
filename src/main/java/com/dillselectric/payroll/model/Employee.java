@@ -60,11 +60,6 @@ public class Employee {
     }
 
     public List<Paycheck> getPaychecks() {
-        if (paychecks == null) {
-            paychecks = new ArrayList<>();
-            System.out.println("initialized paychecks list");
-        }
-
         return paychecks;
     }
 
