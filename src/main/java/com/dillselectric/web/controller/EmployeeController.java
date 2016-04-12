@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -36,10 +37,12 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employee", method = RequestMethod.PUT)
-    public ModelAndView editEmployee(@ModelAttribute Employee employee) {
+    public String editEmployee(@ModelAttribute Employee employee, HttpServletRequest request, ModelMap modelMap) {
         employeeRepository.update(employee);
 
-        return new ModelAndView("redirect:/employee");
+        System.out.println(modelMap);
+
+        return "redirect:" + request.getHeader("Referer");
     }
 
     @RequestMapping("/employee/new")
@@ -59,7 +62,7 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee/{id}/edit/contact")
-    public String employeeEditContact(@PathVariable int id, ModelMap modelMap) {
+    public String employeeEditContact(@PathVariable int id, HttpServletRequest request, ModelMap modelMap) {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
