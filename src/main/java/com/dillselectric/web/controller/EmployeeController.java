@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -39,8 +40,6 @@ public class EmployeeController {
     @RequestMapping(value = "/employee", method = RequestMethod.PUT)
     public String editEmployee(@ModelAttribute Employee employee, HttpServletRequest request, ModelMap modelMap) {
         employeeRepository.update(employee);
-
-        System.out.println(modelMap);
 
         return "redirect:" + request.getHeader("Referer");
     }

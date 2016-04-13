@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/site.css}" />
     <title>Payroll | Employee Details</title>
 </head>
 <body>
@@ -38,6 +39,6 @@
         <br/>
         <br/>
     </div>
-
+    <div th:replace="partials/footer :: footer"></div>
 </body>
 </html>

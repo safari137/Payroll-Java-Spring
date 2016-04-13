@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/site.css}" />
     <title>Payroll | Paycheck</title>
 </head>
 <body>
@@ -13,5 +14,6 @@
             <a href="payroll/new" class="btn btn-lg btn-primary">New Payrun</a>
         </div>
     </div>
+<div th:replace="partials/footer :: footer"></div>
 </body>
 </html>

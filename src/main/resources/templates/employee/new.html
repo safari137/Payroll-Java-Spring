@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Payroll | Add Employee</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/site.css}" />
 </head>
 <body>
 <div th:replace="partials/header :: header"></div>
@@ -25,5 +26,6 @@
             <div class="text-center"><button type="submit" class="btn btn-lg btn-primary">Add Employee</button></div>
         </form>
     </div>
+<div th:replace="partials/footer :: footer"></div>
 </body>
 </html>

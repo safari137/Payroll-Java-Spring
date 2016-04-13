@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/site.css}" />
     <title>Payroll | New Payrun</title>
 </head>
 
@@ -28,5 +29,6 @@
         <div class="text-center"><button class="btn btn-primary btn-lg" type="submit">Run Payroll</button></div>
     </form>
 </div>
+<div th:replace="partials/footer :: footer"></div>
 </body>
 </html>

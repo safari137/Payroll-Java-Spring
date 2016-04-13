@@ -1,6 +1,7 @@
 package com.dillselectric.payroll.model;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -151,5 +152,11 @@ public class Paycheck {
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+
+        return format.format(date.getTime());
     }
 }
