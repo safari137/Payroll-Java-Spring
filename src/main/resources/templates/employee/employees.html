@@ -11,19 +11,23 @@
 <div class="container">
     <h1>Employees</h1>
     <a href="/employee/new">Add Employee</a>
-    <div class="row">
-        <div th:each="employee : ${employees}" class="col-md-12">
-            <div class="col-md-3" th:text="${employee.fullName}"></div>
-            <div class="col-md-3" th:text="${employee.email}"></div>
-            <div class="col-md-3" th:text="${employee.phoneNumber}"></div>
-            <div class="col-md-1" th:text="${employee.id}"></div>
-            <div class="col-md-2">
+    <table class="table table-striped">
+        <tr class="info">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Options</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td class="col-md-3" th:text="${employee.fullName}"></td>
+            <td class="col-md-3" th:text="${employee.email}"></td>
+            <td class="col-md-3 col-sm-2" th:text="${employee.phoneNumber}"></td>
+            <td class="col-md-3 col-sm-4">
                 <a th:href="@{'/employee/' + ${employee.id} + '/edit/'}">Edit |</a>
-                <a th:href="@{'/employee/' + ${employee.id} + '/details/'}"> Details |</a>
-            </div>
-            <br/>
-        </div>
-    </div>
+                <a th:href="@{'/employee/' + ${employee.id} + '/details/'}"> Details </a>
+            </td>
+        </tr>
+    </table>
 </div>
 <div th:replace="partials/footer :: footer"></div>
 </body>
