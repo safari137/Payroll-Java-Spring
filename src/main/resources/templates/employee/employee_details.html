@@ -8,37 +8,77 @@
 </head>
 <body>
     <div th:replace="partials/header :: header"></div>
-    <h1 th:text="${employee.fullName}"></h1>
-    <div th:text="${employee.toString()}"></div>
 
-    <div th:each="paycheck : ${employee.paychecks}">
-        <div class="row">
-            <div class="col-md-4"><strong th:text="${paycheck.id}"></strong></div>
-            <div class="col-md-4" th:text="${'Gross Pay: ' + paycheck.grossAmount}"></div>
-            <div class="col-md-4" th:text="${'Net Pay: ' + paycheck.netAmount}"></div>
-        </div>
-        <div class="row">
-            <h5><strong>Employee Taxes</strong></h5>
-            <div class="col-md-3" th:text="${'Federal Tax: -' + paycheck.federalWithholdingTax}"></div>
-            <div class="col-md-3" th:text="${'State Tax: -' + paycheck.stateWithholdingTax}"></div>
-            <div class="col-md-3" th:text="${'Medicare Tax: -' + paycheck.medicareWithholdingTax}"></div>
-            <div class="col-md-3" th:text="${'SS Tax: -' + paycheck.socialSecurityWithholdingTax}"></div>
-        </div>
-        <br/>
-        <div class="row">
-            <h5><strong>Employer Taxes</strong></h5>
-            <div class="col-md-3" th:text="${'SS Tax: -' + paycheck.employerSocialSecurityTax}"></div>
-            <div class="col-md-3" th:text="${'Medicare Tax: -' + paycheck.employerMedicareTax}"></div>
-            <div class="col-md-3" th:text="${'Fed Unemployement: -' + paycheck.employerFederalUnemploymentTax}"></div>
-            <div class="col-md-3" th:text="${'State Unemployment: -' + paycheck.employerStateUnemploymentTax}"></div>
-        </div>
-        <br/>
-        <br/>
+<div class="container">
+    <h1 th:text="${employee.fullName}"></h1>
+
+    <div th:each="paycheck : ${employee.paychecks}" class="paycheck-details">
+        <p><strong>Paycheck Id: </strong><span th:text="${paycheck.id}"></span></p>
+        <table class="table table-striped">
+            <tr class="info">
+                <th>Name</th>
+                <th>Date</th>
+                <th>Gross Pay</th>
+                <th>Net Pay</th>
+            </tr>
+            <tr>
+                <td th:text="${paycheck.employee.fullName}"></td>
+                <td th:text="${paycheck.getFormattedDate()}"></td>
+                <td th:text="${paycheck.grossAmount}"></td>
+                <td th:text="${paycheck.netAmount}"></td>
+            </tr>
+        </table>
+
+        <div class="text-center space"><h4>Employee Taxes</h4></div>
+        <table class="table table-striped">
+            <tr class="info">
+                <th>Tax</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Federal Withholding</td>
+                <td th:text="${paycheck.federalWithholdingTax}"></td>
+            </tr>
+            <tr>
+                <td>Medicare Withholding</td>
+                <td th:text="${paycheck.medicareWithholdingTax}"></td>
+            </tr>
+            <tr>
+                <td>Social Security Withholding</td>
+                <td th:text="${paycheck.socialSecurityWithholdingTax}"></td>
+            </tr>
+            <tr>
+                <td>State Withholding</td>
+                <td th:text="${paycheck.stateWithholdingTax}"></td>
+            </tr>
+        </table>
+
+        <div class="text-center space"><h4>Employer Taxes</h4></div>
+        <table class="table table-striped">
+            <tr class="info">
+                <th>Tax</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Social Security</td>
+                <td th:text="${paycheck.employerSocialSecurityTax}"></td>
+            </tr>
+            <tr>
+                <td>Medicare</td>
+                <td th:text="${paycheck.employerMedicareTax}"></td>
+            </tr>
+            <tr>
+                <td>Federal Unemployment</td>
+                <td th:text="${paycheck.employerFederalUnemploymentTax}"></td>
+            </tr>
+            <tr>
+                <td>State Unemployment</td>
+                <td th:text="${paycheck.employerStateUnemploymentTax}"></td>
+            </tr>
+        </table>
         <hr/>
-        <br/>
-        <br/>
-        <br/>
     </div>
+</div>
     <div th:replace="partials/footer :: footer"></div>
 </body>
 </html>
