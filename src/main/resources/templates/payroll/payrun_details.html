@@ -31,19 +31,19 @@
                 <div class="text-center space"><h4>Employee Taxes</h4></div>
                 <table class="table table-striped">
                     <tr class="info">
-                        <th>Tax</th>
-                        <th>Amount</th>
+                        <th class="col-md-10">Tax</th>
+                        <th class="col-md-2">Amount</th>
                     </tr>
                     <tr>
                         <td>Federal Withholding</td>
                         <td th:text="${paycheck.federalWithholdingTax}"></td>
                     </tr>
                     <tr>
-                        <td>Medicare Withholding</td>
+                        <td>Medicare</td>
                         <td th:text="${paycheck.medicareWithholdingTax}"></td>
                     </tr>
                     <tr>
-                        <td>Social Security Withholding</td>
+                        <td>Social Security</td>
                         <td th:text="${paycheck.socialSecurityWithholdingTax}"></td>
                     </tr>
                     <tr>
@@ -55,8 +55,8 @@
                 <div class="text-center space"><h4>Employer Taxes</h4></div>
                 <table class="table table-striped">
                     <tr class="info">
-                        <th>Tax</th>
-                        <th>Amount</th>
+                        <th class="col-md-10">Tax</th>
+                        <th class="col-md-2">Amount</th>
                     </tr>
                     <tr>
                         <td>Social Security</td>
