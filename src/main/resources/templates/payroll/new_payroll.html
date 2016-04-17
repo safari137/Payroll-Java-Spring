@@ -11,21 +11,35 @@
 <div class="container">
     <div class="text-center"><h1>New Payrun</h1></div>
     <form action="#" th:action="@{/payroll}" th:method="post" th:object="${payRunContainer}">
+        <table class="table table-striped">
+            <tr class="info">
+                <th class="col-md-2">Pay</th>
+                <th class="col-md-4">Employee</th>
+                <th class="col-md-3">Hours</th>
+            </tr>
         <div th:each="employeePayRun,status : *{employeePayruns}">
-            <div class="row">
+            <tr>
+
                 <input type="hidden" th:field="*{employeePayruns[__${status.index}__].employeeId}"/>
+                <div class="form-group">
+                <td>
+                    <div class="checkbox">
+                        <input type="checkbox" th:field="*{employeePayruns[__${status.index}__].shouldPay}" />
+                    </div>
+                </td>
 
-                <div class="col-md-1">
-                    <input type="checkbox" th:field="*{employeePayruns[__${status.index}__].shouldPay}" />
+                <td><label th:text="${employeePayRun.fullName}"></label></td>
+
+                <td>
+                    <div class="small-input">
+                        <input type="text" class="form-control" th:field="*{employeePayruns[__${status.index}__].hours}" />
+                    </div>
+                </td>
                 </div>
-
-                <div class="col-md-2" th:text="${employeePayRun.fullName}"></div>
-
-                <div class="col-md-1">
-                    <input type="text" th:field="*{employeePayruns[__${status.index}__].hours}" />
-                </div>
-            </div>
+            </tr>
         </div>
+        </table>
+        <hr/>
         <div class="text-center"><button class="btn btn-primary btn-lg" type="submit">Run Payroll</button></div>
     </form>
 </div>

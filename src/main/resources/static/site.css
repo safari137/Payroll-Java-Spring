@@ -16,6 +16,14 @@
     margin-bottom: 100px;
 }
 
+.small-input {
+    width: 100px;
+}
+
+.checkbox input[type=checkbox] {
+    margin-left: 0;
+}
+
 hr {
     border-top: 1px solid #555;
 }
