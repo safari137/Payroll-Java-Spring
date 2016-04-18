@@ -10,72 +10,71 @@
     <div th:replace="partials/header :: header"></div>
     <div class="container">
         <div class="text-center"><h1 class="heading">Payrun Details</h1></div>
-
         <div th:each="paycheck : ${paychecks}" class="paycheck-details">
             <p><strong>Paycheck Id: </strong><span th:text="${paycheck.id}"></span></p>
-                <table class="table table-striped">
-                    <tr class="info">
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Gross Pay</th>
-                        <th>Net Pay</th>
-                    </tr>
-                    <tr>
-                        <td th:text="${paycheck.employee.fullName}"></td>
-                        <td th:text="${paycheck.getFormattedDate()}"></td>
-                        <td th:text="${paycheck.grossAmount}"></td>
-                        <td th:text="${paycheck.netAmount}"></td>
-                    </tr>
-                </table>
+            <table class="table table-striped">
+                <tr class="info">
+                    <th class="col-md-4">Name</th>
+                    <th class="col-md-3">Date</th>
+                    <th class="col-md-3">Gross Pay</th>
+                    <th class="col-md-2">Net Pay</th>
+                </tr>
+                <tr>
+                    <td th:text="${paycheck.employee.fullName}"></td>
+                    <td th:text="${paycheck.getFormattedDate()}"></td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.grossAmount)}"></td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.netAmount)}"></td>
+                </tr>
+            </table>
 
-                <div class="text-center space"><h4>Employee Taxes</h4></div>
-                <table class="table table-striped">
-                    <tr class="info">
-                        <th class="col-md-10">Tax</th>
-                        <th class="col-md-2">Amount</th>
-                    </tr>
-                    <tr>
-                        <td>Federal Withholding</td>
-                        <td th:text="${paycheck.federalWithholdingTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>Medicare</td>
-                        <td th:text="${paycheck.medicareWithholdingTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>Social Security</td>
-                        <td th:text="${paycheck.socialSecurityWithholdingTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>State Withholding</td>
-                        <td th:text="${paycheck.stateWithholdingTax}"></td>
-                    </tr>
-                </table>
+            <div class="text-center space"><h4>Employee Taxes</h4></div>
+            <table class="table table-striped">
+                <tr class="info">
+                    <th class="col-md-10">Tax</th>
+                    <th class="col-md-2">Amount</th>
+                </tr>
+                <tr>
+                    <td>Federal Withholding</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.federalWithholdingTax)}"></td>
+                </tr>
+                <tr>
+                    <td>Medicare Withholding</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.medicareWithholdingTax)}"></td>
+                </tr>
+                <tr>
+                    <td>Social Security Withholding</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.socialSecurityWithholdingTax)}"></td>
+                </tr>
+                <tr>
+                    <td>State Withholding</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.stateWithholdingTax)}"></td>
+                </tr>
+            </table>
 
-                <div class="text-center space"><h4>Employer Taxes</h4></div>
-                <table class="table table-striped">
-                    <tr class="info">
-                        <th class="col-md-10">Tax</th>
-                        <th class="col-md-2">Amount</th>
-                    </tr>
-                    <tr>
-                        <td>Social Security</td>
-                        <td th:text="${paycheck.employerSocialSecurityTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>Medicare</td>
-                        <td th:text="${paycheck.employerMedicareTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>Federal Unemployment</td>
-                        <td th:text="${paycheck.employerFederalUnemploymentTax}"></td>
-                    </tr>
-                    <tr>
-                        <td>State Unemployment</td>
-                        <td th:text="${paycheck.employerStateUnemploymentTax}"></td>
-                    </tr>
-                </table>
-                <hr/>
+            <div class="text-center space"><h4>Employer Taxes</h4></div>
+            <table class="table table-striped">
+                <tr class="info">
+                    <th class="col-md-10">Tax</th>
+                    <th class="col-md-2">Amount</th>
+                </tr>
+                <tr>
+                    <td>Social Security</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.employerSocialSecurityTax)}"></td>
+                </tr>
+                <tr>
+                    <td>Medicare</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.employerMedicareTax)}"></td>
+                </tr>
+                <tr>
+                    <td>Federal Unemployment</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.employerFederalUnemploymentTax)}"></td>
+                </tr>
+                <tr>
+                    <td>State Unemployment</td>
+                    <td th:text="${paycheck.toFormattedNumber(paycheck.employerStateUnemploymentTax)}"></td>
+                </tr>
+            </table>
+            <hr/>
         </div>
     </div>
     <div th:replace="partials/footer :: footer"></div>

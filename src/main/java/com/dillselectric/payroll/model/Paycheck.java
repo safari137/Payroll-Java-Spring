@@ -1,6 +1,9 @@
 package com.dillselectric.payroll.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -123,7 +126,9 @@ public class Paycheck {
         this.grossAmount = grossAmount;
     }
     public double getNetAmount() {
-        return grossAmount - federalWithholdingTax - stateWithholdingTax - medicareWithholdingTax - socialSecurityWithholdingTax;
+        double result = grossAmount - federalWithholdingTax - stateWithholdingTax - medicareWithholdingTax - socialSecurityWithholdingTax;
+
+        return result;
     }
 
     public void setNetAmount(double netAmount) {
@@ -158,5 +163,11 @@ public class Paycheck {
         SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy");
 
         return format.format(date.getTime());
+    }
+
+    public static String toFormattedNumber(double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+        return decimalFormat.format(number);
     }
 }
