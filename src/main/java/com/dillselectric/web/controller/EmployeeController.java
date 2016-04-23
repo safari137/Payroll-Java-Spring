@@ -25,6 +25,7 @@ public class EmployeeController {
     public String allEmployees(ModelMap modelMap) {
         List<Employee> employees = employeeRepository.getAll();
 
+        modelMap.put("page", "employee");
         modelMap.put("employees", employees);
 
         return "employee/employees";
@@ -45,8 +46,9 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee/new")
-    public String newEmployee(Model model) {
-        model.addAttribute("employee", new Employee());
+    public String newEmployee(ModelMap modelMap) {
+        modelMap.put("employee", new Employee());
+        modelMap.put("page", "employee");
 
         return "employee/new";
     }
@@ -56,6 +58,7 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
+        modelMap.put("page", "employee");
 
         return "employee/employee_edit_main";
     }
@@ -65,6 +68,8 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
+        modelMap.put("page", "employee");
+        modelMap.put("message", "Saved.");
 
         return "employee/employee_edit_contact";
     }
@@ -74,6 +79,7 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
+        modelMap.put("page", "employee");
 
         return "employee/employee_edit_tax";
     }
@@ -83,6 +89,7 @@ public class EmployeeController {
         Employee employee = employeeRepository.findById(id);
 
         modelMap.put("employee", employee);
+        modelMap.put("page", "employee");
 
         return "/employee/employee_details";
     }

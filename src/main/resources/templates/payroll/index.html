@@ -11,7 +11,11 @@
     <div class="container">
         <div class="text-center"><h1>Payroll</h1></div>
         <div class="jumbotron">
-            <a href="payroll/new" class="btn btn-lg btn-primary">New Payrun</a>
+            <div class="row">
+                <a href="./payroll/new" class="btn btn-lg btn-primary col-md-3">New Payrun</a>
+                <div class="col-md-1"></div>
+                <a href="./payroll/paychecks" class="btn btn-lg btn-primary col-md-3">Paycheck History</a>
+            </div>
         </div>
     </div>
 <div th:replace="partials/footer :: footer"></div>

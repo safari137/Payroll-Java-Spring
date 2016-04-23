@@ -8,12 +8,15 @@
 <body>
 <div th:replace="partials/header :: header"></div>
 <div class="container">
-    <h1>Welcome Home!</h1>
+    <div class="text-center">
+        <h1>Payroll Manager 1.0</h1>
+    </div>
     <div class="jumbotron">
-        <p>
-            <p><a href="/employee/" class="btn btn-lg btn-primary">Employees</a></p>
-            <p><a href="/payroll/" class="btn btn-lg btn-primary">Payroll</a></p>
-        </p>
+        <div class="row">
+            <a href="/employee/" class="btn btn-lg btn-primary col-md-3">Employees</a>
+            <div class="col-md-1"></div>
+            <a href="/payroll/" class="btn btn-lg btn-primary col-md-3">Payroll</a>
+        </div>
     </div>
 </div>
 <div th:replace="partials/footer :: footer"></div>

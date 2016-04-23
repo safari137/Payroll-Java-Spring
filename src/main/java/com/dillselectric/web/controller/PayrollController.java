@@ -31,17 +31,20 @@ public class PayrollController {
     }
 
     @RequestMapping("/payroll")
-    public String payrollMenu() {
+    public String payrollMenu(ModelMap modelMap) {
+        modelMap.put("page", "payroll");
+
         return "payroll/index";
     }
 
     @RequestMapping("/payroll/new")
-    public String newPayroll(Model model) {
+    public String newPayroll(ModelMap modelMap) {
         List<EmployeePayrun> employeePayrunList = EmployeePayrun.convertEmployeeList(employeeRepository.getAll());
 
         PayRunContainer payRunContainer = new PayRunContainer(employeePayrunList);
 
-        model.addAttribute("payRunContainer", payRunContainer);
+        modelMap.put("payRunContainer", payRunContainer);
+        modelMap.put("page", "payroll");
 
         return "payroll/new_payroll";
     }
@@ -53,6 +56,7 @@ public class PayrollController {
         List<Paycheck> paychecks = payrollEngineDriver.executePayroll(employees);
 
         modelMap.put("paychecks", paychecks);
+        modelMap.put("page", "payroll");
 
         return "payroll/payrun_details";
     }
@@ -77,6 +81,7 @@ public class PayrollController {
         List<Paycheck> paychecks = paycheckRepository.getAll();
 
         modelMap.put("paychecks", paychecks);
+        modelMap.put("page", "payroll");
 
         return "payroll/payrun_details";
     }
