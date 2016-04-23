@@ -3,19 +3,14 @@ package com.dillselectric.web.controller;
 import com.dillselectric.contracts.Repository;
 import com.dillselectric.data.PayrollDao;
 import com.dillselectric.payroll.model.Employee;
-import com.dillselectric.repository.EmployeeRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class EmployeeController {
@@ -42,7 +37,7 @@ public class EmployeeController {
     public String editEmployee(@ModelAttribute Employee employee, HttpServletRequest request, ModelMap modelMap) {
         employeeRepository.update(employee);
 
-        return "redirect:" + request.getHeader("Referer");
+        return createRedirectString("redirect:" + request.getHeader("Referer")) + "?message=Saved";
     }
 
     @RequestMapping("/employee/new")
@@ -54,9 +49,10 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employee/{id}/edit")
-    public String employeeEditBasic(@PathVariable int id, ModelMap modelMap) {
+    public String employeeEditBasic(@PathVariable int id, @RequestParam Map<String,String> allRequestParams, ModelMap modelMap) {
         Employee employee = employeeRepository.findById(id);
 
+        modelMap.put("message", allRequestParams.get("message"));
         modelMap.put("employee", employee);
         modelMap.put("page", "employee");
 
@@ -64,20 +60,21 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employee/{id}/edit/contact")
-    public String employeeEditContact(@PathVariable int id, HttpServletRequest request, ModelMap modelMap) {
+    public String employeeEditContact(@PathVariable int id, @RequestParam Map<String,String> allRequestParams, ModelMap modelMap) {
         Employee employee = employeeRepository.findById(id);
 
+        modelMap.put("message", allRequestParams.get("message"));
         modelMap.put("employee", employee);
         modelMap.put("page", "employee");
-        modelMap.put("message", "Saved.");
 
         return "employee/employee_edit_contact";
     }
 
     @RequestMapping("/employee/{id}/edit/tax")
-    public String employeeEditTax(@PathVariable int id, ModelMap modelMap) {
+    public String employeeEditTax(@PathVariable int id, @RequestParam Map<String,String> allRequestParams, ModelMap modelMap) {
         Employee employee = employeeRepository.findById(id);
 
+        modelMap.put("message", allRequestParams.get("message"));
         modelMap.put("employee", employee);
         modelMap.put("page", "employee");
 
@@ -92,5 +89,20 @@ public class EmployeeController {
         modelMap.put("page", "employee");
 
         return "/employee/employee_details";
+    }
+
+    private static String createRedirectString(String redirectStr) {
+        int length = redirectStr.length();
+
+        if (redirectStr.charAt(length - 1) == '/') {
+            redirectStr = redirectStr.substring(0, length -1);
+        }
+
+        int index;
+        if ((index = redirectStr.indexOf('?')) > -1) {
+            redirectStr = redirectStr.substring(0, index);
+        }
+
+        return redirectStr;
     }
 }
