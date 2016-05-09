@@ -2,7 +2,7 @@
     <session-factory>
         <!-- Database connection setting -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://b3584344c7a6e4:cb1eb214@us-cdbr-iron-east-03.cleardb.net/heroku_c0abf144aa1fd40?reconnect=true</property>
+        <property name="connection.url">jdbc:{env.CLEARDB_DATABASE_URL}</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
