@@ -10,13 +10,16 @@ buildscript {
     }
 }
 
-task stage {
-    dependsOn build
-}
+//task stage {
+//    dependsOn build
+//}
+
+defaultTasks "clean", "build", "installApp"
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'heroku'
 
 group = 'com.stormpath'
 version = '0.1.0'
