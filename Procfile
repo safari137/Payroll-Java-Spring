@@ -1,1 +1,1 @@
-web: build/install/web/bin/web
+web: java -jar target/*.jar
