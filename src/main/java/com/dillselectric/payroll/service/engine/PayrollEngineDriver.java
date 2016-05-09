@@ -9,7 +9,6 @@ import com.dillselectric.payroll.model.TaxInfo;
 import com.dillselectric.payroll.service.YearToDateGrossPayRetriever;
 import com.dillselectric.payroll.service.brackets.TaxBracketManager;
 import com.dillselectric.payroll.service.calculators.*;
-import com.dillselectric.repository.PaycheckRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +17,7 @@ import java.util.List;
 
 public class PayrollEngineDriver {
     private List<Calculator> calculatorList;
+
     private PayrollEngine engine;
     private Repository<Paycheck> paycheckRepository;
     private Repository<Employee> employeeRepository = new PayrollDao<>(Employee.class);
@@ -49,7 +49,7 @@ public class PayrollEngineDriver {
     }
 
     private List<Calculator> getCalculators() {
-        List<TaxInfo> taxbrackets = Arrays.asList(
+        List<TaxInfo> stateTaxBrackets = Arrays.asList(
                 new TaxInfo(0, 3000, 0, .02),
                 new TaxInfo(3000, 5000, 60, .03),
                 new TaxInfo(5000, 17000, 120, .05),
@@ -60,11 +60,11 @@ public class PayrollEngineDriver {
 
         calculatorList = Arrays.asList(
                 new FederalTaxCalculator(),
-                new StateTaxCalculator(new TaxBracketManager(taxbrackets), new AdjustedStateGrossCalculator()),
+                new StateTaxCalculator(new TaxBracketManager(stateTaxBrackets), new AdjustedStateGrossCalculator()),
                 new SocialSecurityCalculator(),
                 new MedicareCalculator(),
-                new FederalUnemploymentCalculator(new YearToDateGrossPayRetriever(new PaycheckRepository(), year)),
-                new StateUnemploymentCalculator(new YearToDateGrossPayRetriever(new PaycheckRepository(), year))
+                new FederalUnemploymentCalculator(new YearToDateGrossPayRetriever(paycheckRepository, year)),
+                new StateUnemploymentCalculator(new YearToDateGrossPayRetriever(paycheckRepository, year))
         );
 
         return calculatorList;

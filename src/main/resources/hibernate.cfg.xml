@@ -1,11 +1,12 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection setting -->
-        <property name="connection.driver_class">org.h2.Driver</property>
-        <property name="connection.url">jdbc:h2:./data/payroll</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://b3584344c7a6e4:cb1eb214@us-cdbr-iron-east-03.cleardb.net/heroku_c0abf144aa1fd40?reconnect=true</property>
 
         <!-- SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
 
         <!-- Create the database schema on startup -->
         <!--<property name="hbm2ddl.auto">create</property>-->

@@ -4,6 +4,9 @@ import com.dillselectric.contracts.Calculator;
 import com.dillselectric.payroll.model.Employee;
 import com.dillselectric.payroll.model.Paycheck;
 import com.dillselectric.payroll.service.calculators.GrossCalculator;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
