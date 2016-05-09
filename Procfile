@@ -1,1 +1,1 @@
-web: build/install/Payroll/bin/Payroll
+web: sh target/bin/webapp
