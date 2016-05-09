@@ -10,9 +10,9 @@ buildscript {
     }
 }
 
-//task stage {
-//    dependsOn build
-//}
+task stage {
+    dependsOn "build"
+}
 
 defaultTasks "clean", "build", "installApp"
 
