@@ -88,7 +88,7 @@ public class EmployeeController {
         modelMap.put("employee", employee);
         modelMap.put("page", "employee");
 
-        return "/employee/employee_details";
+        return "employee/employee_details";
     }
 
     private static String createRedirectString(String redirectStr) {
