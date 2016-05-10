@@ -23,8 +23,8 @@
             <td class="col-md-3" th:text="${employee.email}"></td>
             <td class="col-md-3 col-sm-2" th:text="${employee.phoneNumber}"></td>
             <td class="col-md-3 col-sm-4">
-                <a th:href="@{'/employee/' + ${employee.id} + '/edit/'}">Edit |</a>
-                <a th:href="@{'/employee/' + ${employee.id} + '/details/'}"> Paycheck History </a>
+                <a th:href="@{'~/employee/' + ${employee.id} + '/edit/'}">Edit |</a>
+                <a th:href="@{'~/employee/' + ${employee.id} + '/details/'}"> Paycheck History </a>
             </td>
         </tr>
     </table>
